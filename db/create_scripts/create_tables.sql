@@ -7,7 +7,7 @@ CREATE DATABASE RMP;
 -- Use the newly created database
 USE RMP;
 
--- School Table
+-- school Table
 CREATE TABLE school (
     id VARCHAR(50) PRIMARY KEY,
     name VARCHAR(255),
@@ -16,7 +16,7 @@ CREATE TABLE school (
     country VARCHAR(255)
 );
 
--- Department Table
+-- department Table
 CREATE TABLE department (
     id VARCHAR(50) PRIMARY KEY,
     name VARCHAR(255),
@@ -25,7 +25,7 @@ CREATE TABLE department (
     FOREIGN KEY (school_id) REFERENCES school(id) ON DELETE CASCADE
 );
 
--- Course Table
+-- course Table
 CREATE TABLE course (
     id VARCHAR(50) PRIMARY KEY,
     name VARCHAR(255),
@@ -34,7 +34,7 @@ CREATE TABLE course (
     FOREIGN KEY (dept_id) REFERENCES department(id) ON DELETE CASCADE
 );
 
--- Professor Table
+-- professor Table
 CREATE TABLE professor (
     id VARCHAR(50) PRIMARY KEY,
     name VARCHAR(255),
@@ -88,8 +88,8 @@ CREATE TABLE prof_course (
     FOREIGN KEY (course_id) REFERENCES course(id) ON DELETE CASCADE
 );
 
--- Students Table
-CREATE TABLE students (
+-- student Table
+CREATE TABLE student (
     id VARCHAR(50) PRIMARY KEY,
     school_id VARCHAR(50),
     name VARCHAR(255),
@@ -103,7 +103,7 @@ CREATE TABLE student_ratings (
     prof_course_id INT,
     rating INT,
     avg_rating FLOAT,
-    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+    FOREIGN KEY (student_id) REFERENCES student(id) ON DELETE CASCADE,
     FOREIGN KEY (prof_course_id) REFERENCES prof_course(id) ON DELETE CASCADE
 );
 
