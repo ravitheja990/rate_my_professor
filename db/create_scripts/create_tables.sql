@@ -1,11 +1,11 @@
 -- Drop the database if it exists
-DROP DATABASE IF EXISTS RMP;
+DROP DATABASE IF EXISTS rate_my_professor;
 
 -- Create a new database
-CREATE DATABASE RMP;
+CREATE DATABASE rate_my_professor;
 
 -- Use the newly created database
-USE RMP;
+USE rate_my_professor;
 
 -- school Table
 CREATE TABLE school (
@@ -39,7 +39,9 @@ CREATE TABLE professor (
     id VARCHAR(50) PRIMARY KEY,
     name VARCHAR(255),
     dept_id VARCHAR(50),
-    FOREIGN KEY (dept_id) REFERENCES department(id) ON DELETE CASCADE
+    school_id VARCHAR(50),
+    FOREIGN KEY (dept_id) REFERENCES department(id) ON DELETE CASCADE,
+    FOREIGN KEY (school_id) REFERENCES school(id) ON DELETE CASCADE
 );
 
 -- professor_meta_data Table
@@ -53,7 +55,7 @@ CREATE TABLE professor_meta_data (
 
 -- dept_school Table
 CREATE TABLE dept_school (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     dept_id VARCHAR(50),
     school_id VARCHAR(50),
     FOREIGN KEY (dept_id) REFERENCES department(id) ON DELETE CASCADE,
@@ -62,7 +64,7 @@ CREATE TABLE dept_school (
 
 -- school_course Table
 CREATE TABLE school_course (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     school_id VARCHAR(50),
     course_id VARCHAR(50),
     FOREIGN KEY (school_id) REFERENCES school(id) ON DELETE CASCADE,
@@ -71,7 +73,7 @@ CREATE TABLE school_course (
 
 -- dept_course Table
 CREATE TABLE dept_course (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     dept_id VARCHAR(50),
     course_id VARCHAR(50),
     FOREIGN KEY (dept_id) REFERENCES department(id) ON DELETE CASCADE,
@@ -80,7 +82,7 @@ CREATE TABLE dept_course (
 
 -- prof_course Table
 CREATE TABLE prof_course (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     prof_id VARCHAR(50),
     course_id VARCHAR(50),
     term VARCHAR(255),
@@ -98,7 +100,7 @@ CREATE TABLE student (
 
 -- student_ratings Table
 CREATE TABLE student_ratings (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     student_id VARCHAR(50),
     prof_course_id INT,
     rating INT,
@@ -109,7 +111,7 @@ CREATE TABLE student_ratings (
 
 -- rating_categories Table
 CREATE TABLE rating_categories (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     category_name VARCHAR(255),
     description VARCHAR(1000)
 );
