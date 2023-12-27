@@ -2,7 +2,11 @@
 Rate My Professor
 
 ## Initial Database Setup
-Run the shell script present in the db forlder by using the following command.
+1. Create a Database in local MySQL DB using the below command
+```CREATE DATABASE rate_my_professor;```
 
-''' bash db/db_setup.sh -u '<username>' -p '<password>' '''
-This script initiates a connection with the mysql server and creates all the tables along with some dummy data present in the insert_scripts folder in the given database
+2. Go to db/create_scripts folder and run below command to create all tables:
+```bash run_create_scripts.sh <mysql_username> <mysql_password>```
+
+3. Go to db/insert_scripts folder and run below command to insert dummy data to all tables:
+```bash run_insert_scripts.sh <mysql_username> <mysql_password>```
